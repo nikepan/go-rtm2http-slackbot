@@ -20,11 +20,15 @@ builds:
     main: ./
     ldflags: -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
 
+checksum:
+  name_template: '{{ .ProjectName }}_{{ .Version }}_checksums.txt'
+
 archive:
-  format_overrides:
-    - goos: windows
-      format: zip
-  files:
-    - config.sample.json
-    - README.md
-    - LICENSE
+  - name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - config.sample.json
+      - README.md
+      - LICENSE
