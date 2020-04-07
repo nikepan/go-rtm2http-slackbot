@@ -24,4 +24,4 @@ deploy:
   on:
     tags: true
     repo: nikepan/go-rtm2http-slackbot
-    condition: $TRAVIS_GO_VERSION =~ ^1\.12\.[0-9]+$
+    condition: $TRAVIS_GO_VERSION =~ ^1\.13\.[0-9]+$
