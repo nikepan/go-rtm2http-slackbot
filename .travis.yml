@@ -1,7 +1,7 @@
 language: go
 sudo: false
 go:
-  - 1.13.1
+  - 1.15.8
   - tip
 
 script:
@@ -24,4 +24,4 @@ deploy:
   on:
     tags: true
     repo: nikepan/go-rtm2http-slackbot
-    condition: $TRAVIS_GO_VERSION =~ ^1\.13\.[0-9]+$
+    condition: $TRAVIS_GO_VERSION =~ ^1\.15\.[0-9]+$

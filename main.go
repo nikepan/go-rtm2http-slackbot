@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/nlopes/slack"
+	"github.com/slack-go/slack"
 )
 
 type Config struct {
