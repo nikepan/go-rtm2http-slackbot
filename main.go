@@ -61,12 +61,13 @@ Loop:
 				if !strings.HasPrefix(ev.Msg.Channel, "D") {
 					continue
 				}
-				_, _, userChannel, err := rtm.OpenIMChannel(ev.Msg.User)
+				params := slack.OpenConversationParameters{ChannelID: ev.Msg.Channel}
+				userChannel, _, _, err := rtm.OpenConversation(&params)
 				if err != nil {
 					log.Printf("Get channel Error: %v\n", err)
 					continue
 				}
-				if userChannel != ev.Msg.Channel {
+				if userChannel.ID != ev.Msg.Channel {
 					continue
 				}
 
@@ -76,7 +77,7 @@ Loop:
 					continue
 				}
 
-				log.Printf("User: %v; Message: %v\n", userInfo.Profile.Email, ev.Msg.Text) // ev.Msg.User, ev.Msg.Channel
+				log.Printf("User: %v (%v); Message: %v\n", ev.Msg.User, userInfo.Profile.Email, ev.Msg.Text) // ev.Msg.User, ev.Msg.Channel
 
 				client := &http.Client{}
 				parameters := url.Values{}
